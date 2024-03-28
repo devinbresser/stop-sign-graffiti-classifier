@@ -1,0 +1,254 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9672,        246]
+NotebookOptionsPosition[      8812,        225]
+NotebookOutlinePosition[      9213,        241]
+CellTagsIndexPosition[      9170,        238]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "This", " ", "notebook", " ", "creates", " ", "the", " ", "positive", " ", 
+    "training", " ", "data", " ", 
+    RowBox[{"(", 
+     RowBox[{
+     "signs", " ", "with", " ", "randomly", " ", "permuted", " ", 
+      "graffiti"}], ")"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Run", " ", "this", " ", "notebook", " ", "after", " ", "create"}], "-", 
+    RowBox[{
+     RowBox[{"negatives", ".", "nb"}], " ", "and", " ", 
+     RowBox[{"functions", ".", "nb"}]}]}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.920404483932088*^9, 3.9204044839330845`*^9}, {
+  3.920636935126129*^9, 3.9206369757234735`*^9}, {3.920637011073122*^9, 
+  3.9206370116495237`*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"ef4533c3-9c82-4196-809b-120f68e91b7a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Remove", " ", "background", " ", "and", " ", "crop", " ", "graffiti", " ",
+     "images"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"signs", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+        "\"\</base/signs/\>\""}], ",", "\"\<*.jpg\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"directoryPath", "=", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+      "\"\</base/grafs/\>\""}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"grafFiles", "=", 
+     RowBox[{"FileNames", "[", 
+      RowBox[{"directoryPath", "<>", "\"\<*.jpg\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"grafsJPG", "=", 
+     RowBox[{"Import", "/@", "grafFiles"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"grafsJPGnoBG", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"RemoveBackground", "[", 
+        RowBox[{"#", ",", " ", "\"\<Salient\>\""}], "]"}], "&"}], "/@", 
+      "grafsJPG"}]}], ";"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.920404496330856*^9, 3.9204045030059166`*^9}, {
+   3.9204051848924847`*^9, 3.9204051966740427`*^9}, {3.920405448264042*^9, 
+   3.920405467343749*^9}, {3.920553976967428*^9, 3.920553977177825*^9}, {
+   3.9206360772648516`*^9, 3.920636102082183*^9}, {3.9206372871575794`*^9, 
+   3.9206373457791834`*^9}, {3.920637701942114*^9, 3.920637736585451*^9}, {
+   3.9206382899253683`*^9, 3.9206383137909765`*^9}, {3.92063840642705*^9, 
+   3.9206384085866303`*^9}, 3.9206385124570656`*^9, 
+   3.920639098300692*^9},ExpressionUUID->"c7ee4080-6d5a-4b15-89a6-\
+80f029a47723"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Create", " ", "a", " ", "directory", " ", "for", " ", "the", " ", 
+    "positives"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"notebookDirectory", "=", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"exportDirectory", "=", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"notebookDirectory", ",", "\"\<images/positives\>\""}], "}"}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"Not", "[", 
+       RowBox[{"DirectoryQ", "[", "exportDirectory", "]"}], "]"}], ",", 
+      RowBox[{"CreateDirectory", "[", "exportDirectory", "]"}]}], "]"}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.9204048847515497`*^9, 3.9204048847530518`*^9}, {
+   3.920405297096186*^9, 3.9204053246153393`*^9}, 3.920405355073151*^9, 
+   3.9206360280867524`*^9, {3.9206361064849625`*^9, 3.920636120832608*^9}, {
+   3.9206373496645117`*^9, 3.9206373594215384`*^9}, {3.9206377059704*^9, 
+   3.9206377325357723`*^9}, {3.9206383524389057`*^9, 3.9206383730054107`*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"87a252e6-b75b-403b-aa58-bb74cca9ff06"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Function", " ", "to", " ", "generate", " ", "and", " ", "export", " ", 
+    "images"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"exportPlacedImages", "[", 
+     RowBox[{"graf_", ",", "sign_", ",", "grafIndex_", ",", "signIndex_"}], 
+     "]"}], ":=", 
+    RowBox[{"Module", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{"images", ",", "\[IndentingNewLine]", "filename"}], 
+       "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Generate", " ", "the", " ", "images", " ", "using", " ", 
+        "placeImages"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"images", "=", 
+        RowBox[{"placeImages", "[", 
+         RowBox[{"graf", ",", "sign", ",", "1"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Export", " ", "each", " ", "image"}], " ", "*)"}], 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"filename", "=", 
+           RowBox[{"FileNameJoin", "[", 
+            RowBox[{"{", 
+             RowBox[{"exportDirectory", ",", 
+              RowBox[{"\"\<Graf_\>\"", "<>", 
+               RowBox[{"IntegerString", "[", "grafIndex", "]"}], "<>", 
+               "\"\<_Sign_\>\"", "<>", 
+               RowBox[{"IntegerString", "[", "signIndex", "]"}], "<>", 
+               "\"\<_Perturbation_\>\"", "<>", 
+               RowBox[{"IntegerString", "[", "i", "]"}], "<>", 
+               "\"\<.jpg\>\""}]}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Export", "[", 
+           RowBox[{"filename", ",", 
+            RowBox[{"images", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "images", "]"}]}], "}"}]}], " ", 
+        "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}],
+    ";"}]}]], "Input",
+ CellChangeTimes->{{3.9206361217469163`*^9, 3.920636122040644*^9}, 
+   3.920637740410963*^9},
+ CellLabel->"In[71]:=",ExpressionUUID->"cce16396-04c3-4a37-b3d6-6b187583f825"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Generate", " ", "all", " ", "of", " ", "the", " ", "permutations", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"creates", " ", "about", " ", "60"}], ",", 
+      RowBox[{"000", " ", "images"}], ",", " ", 
+      RowBox[{"run", " ", "with", " ", 
+       RowBox[{"caution", "!"}]}]}], " "}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Do", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"RandomReal", "[", "]"}], "<=", "0.5"}], ",", " ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "Only", " ", "create", " ", "this", " ", "permutation", " ", "with", 
+          " ", "50", "%", " ", "probability", " ", "to", " ", "save", " ", 
+          "some", " ", "time"}], "..."}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"exportPlacedImages", "[", 
+        RowBox[{
+         RowBox[{"grafsJPGnoBG", "[", 
+          RowBox[{"[", "grafIndex", "]"}], "]"}], ",", 
+         RowBox[{"signs", "[", 
+          RowBox[{"[", "signIndex", "]"}], "]"}], ",", "grafIndex", ",", 
+         "signIndex"}], "]"}]}], "\[IndentingNewLine]", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"grafIndex", ",", "1", ",", 
+       RowBox[{"Length", "[", "grafsJPGnoBG", "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"signIndex", ",", "1", ",", 
+       RowBox[{"Length", "[", "signs", "]"}]}], "}"}]}], 
+    "\[IndentingNewLine]", "]"}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.9206361283640313`*^9, 3.920636181186882*^9}, {
+  3.9206368751395445`*^9, 3.9206368785899277`*^9}, {3.920638327644408*^9, 
+  3.9206383294059663`*^9}},
+ CellLabel->"In[72]:=",ExpressionUUID->"38554188-52e2-4e72-9ff9-36787dffdc17"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.9206391416346273`*^9},
+ CellLabel->"Out[72]=",ExpressionUUID->"a13adb38-521d-4a4c-816e-3a19d3daae9d"]
+}, Open  ]]
+},
+WindowSize->{958.5, 999.75},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e854c0ee-8879-4626-85be-3be5d36d5bb8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 848, 20, 48, "Input",ExpressionUUID->"ef4533c3-9c82-4196-809b-120f68e91b7a"],
+Cell[1409, 42, 1762, 43, 143, "Input",ExpressionUUID->"c7ee4080-6d5a-4b15-89a6-80f029a47723"],
+Cell[3174, 87, 1239, 28, 86, "Input",ExpressionUUID->"87a252e6-b75b-403b-aa58-bb74cca9ff06"],
+Cell[4416, 117, 2348, 54, 390, "Input",ExpressionUUID->"cce16396-04c3-4a37-b3d6-6b187583f825"],
+Cell[CellGroupData[{
+Cell[6789, 175, 1846, 43, 181, "Input",ExpressionUUID->"38554188-52e2-4e72-9ff9-36787dffdc17"],
+Cell[8638, 220, 158, 2, 32, "Output",ExpressionUUID->"a13adb38-521d-4a4c-816e-3a19d3daae9d"]
+}, Open  ]]
+}
+]
+*)
+

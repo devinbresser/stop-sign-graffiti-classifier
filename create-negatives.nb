@@ -1,0 +1,257 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10019,        249]
+NotebookOptionsPosition[      9163,        228]
+NotebookOutlinePosition[      9564,        244]
+CellTagsIndexPosition[      9521,        241]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "This", " ", "notebook", " ", "was", " ", "used", " ", "to", " ", "create",
+     " ", "the", " ", "perturbations", " ", "of", " ", "the", " ", "original",
+     " ", "sign", " ", "images", " ", 
+    RowBox[{"(", 
+     RowBox[{"19", "k", " ", "negatives"}], ")"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Run", " ", "this", " ", "notebook", " ", "after", " ", 
+     RowBox[{"functions", ".", "nb"}], " ", "but", " ", "before", " ", 
+     "create"}], "-", 
+    RowBox[{
+     RowBox[{"positives", ".", "nb"}], " ", "as", " ", "this", " ", 
+     "notebook", " ", "creates", " ", "the", " ", "permutations", " ", 
+     "folder"}]}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.920631141785331*^9, 3.9206311659699087`*^9}, {
+  3.92063691539314*^9, 3.9206369287201357`*^9}, {3.9206369863368635`*^9, 
+  3.9206369999651227`*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"54240234-2f14-43e1-be36-231f75861b0e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"signs", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\</base/signs/\>\""}],
+      ",", "\"\<*.jpg\>\""}], "]"}]}], ";"}]], "Input",
+ CellLabel->"In[15]:=",ExpressionUUID->"12f93a0b-04e2-4fcd-b477-30816aef8dba"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Rotation", " ", "variants"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Do", "[", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{"Load", " ", "the", " ", "image"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"originalImage", "=", 
+       RowBox[{"ImageResize", "[", 
+        RowBox[{
+         RowBox[{"signs", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"300", ",", "300"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Generate", " ", "rotated", " ", "images", " ", "and", " ", "export", 
+        " ", "each"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"Table", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"rotatedImage", "=", 
+            RowBox[{"ImageResize", "[", 
+             RowBox[{
+              RowBox[{"ImageRotate", "[", 
+               RowBox[{"originalImage", ",", 
+                RowBox[{"degree", "*", "Degree"}], ",", 
+                RowBox[{"Background", "->", "Black"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"300", ",", "300"}], "}"}]}], "]"}]}], "}"}], ",", 
+          RowBox[{"Export", "[", 
+           RowBox[{
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+               "\"\<images/negatives\>\"", ",", "\[IndentingNewLine]", 
+               RowBox[{"\"\<image_\>\"", "<>", 
+                RowBox[{"IntegerString", "[", 
+                 RowBox[{"i", ",", "10", ",", "3"}], "]"}], "<>", 
+                "\"\<_rotation_\>\"", "<>", "\[IndentingNewLine]", 
+                RowBox[{"IntegerString", "[", 
+                 RowBox[{
+                  RowBox[{"degree", "+", "30"}], ",", "10", ",", "2"}], "]"}],
+                 "<>", "\"\<.jpg\>\""}]}], "}"}], "]"}], ",", 
+            "rotatedImage"}], "]"}]}], "\[IndentingNewLine]", "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"degree", ",", 
+          RowBox[{"-", "25"}], ",", "25", ",", "1"}], "}"}]}], "  ", 
+       "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "[", "signs", "]"}]}], "}"}]}], "  ", 
+    "\[IndentingNewLine]", "]"}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.92040073279635*^9, 3.9204007355111713`*^9}, {
+  3.9206311007796755`*^9, 3.9206311372979417`*^9}, {3.9206312401701097`*^9, 
+  3.920631241713748*^9}, {3.9206371545389366`*^9, 3.920637177302887*^9}, {
+  3.9206376387471423`*^9, 3.920637642113193*^9}, {3.9206379107655764`*^9, 
+  3.9206379452295456`*^9}, {3.920638013421276*^9, 3.920638028015459*^9}},
+ CellLabel->"",ExpressionUUID->"93b5d486-a93f-47fa-9fa9-31e051c9fb2e"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.9206379055327373`*^9, 3.920638001797451*^9},
+ CellLabel->"Out[16]=",ExpressionUUID->"ab6a8c6a-12c2-4def-963a-a75e98a5beef"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+   RowBox[{"Generate", " ", "Blur"}], " ", "+", " ", 
+   RowBox[{
+   "Sharpen", " ", "variants", " ", "on", " ", "the", " ", "rotations"}]}], 
+  " ", "*)"}]], "Input",
+ CellChangeTimes->{{3.920400719739139*^9, 3.9204007271551924`*^9}, {
+  3.9206312805294666`*^9, 3.920631287279475*^9}},
+ CellLabel->"",ExpressionUUID->"b2598805-5b82-402a-94b5-8f897cb32f0d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"imageFiles", "=", 
+    RowBox[{"FileNames", "[", 
+     RowBox[{"\"\<*.jpg\>\"", ",", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+         "\"\<images/negatives\>\""}], "}"}], "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"applyAndSaveFiltered", "[", "imageFile_", "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+      "image", ",", "\[IndentingNewLine]", "sharpenedImg", ",", " ", 
+       "\[IndentingNewLine]", "blurredImg", ",", " ", "\[IndentingNewLine]", 
+       "dir", ",", "\[IndentingNewLine]", "baseName", ",", 
+       "\[IndentingNewLine]", "sharpenedPath", ",", " ", 
+       "\[IndentingNewLine]", "blurredPath"}], "\[IndentingNewLine]", "}"}], 
+     ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"image", " ", "=", " ", 
+       RowBox[{"ImageResize", "[", 
+        RowBox[{
+         RowBox[{"Import", "[", "imageFile", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"300", ",", "300"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Apply", " ", "sharpen", " ", "and", " ", "blur", " ", "to", " ", 
+        "create", " ", "variants"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"sharpenedImg", "=", 
+       RowBox[{"Sharpen", "[", 
+        RowBox[{"image", ",", " ", "3"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"blurredImg", " ", "=", " ", 
+       RowBox[{"Blur", "[", 
+        RowBox[{"image", ",", " ", "3"}], "]"}]}], ";", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Create", " ", "new", " ", "filepaths"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"dir", " ", "=", " ", 
+       RowBox[{"DirectoryName", "[", "imageFile", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"baseName", " ", "=", " ", 
+       RowBox[{"FileBaseName", "[", "imageFile", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"sharpenedPath", "=", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{"dir", ",", 
+          RowBox[{"baseName", "<>", "\"\<_sharpened.jpg\>\""}]}], "}"}], 
+        "]"}]}], ";", 
+      RowBox[{"blurredPath", "=", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{"dir", ",", 
+          RowBox[{"baseName", "<>", "\"\<_blurred.jpg\>\""}]}], "}"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"Export", " ", "the", " ", "new", " ", "images"}], "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{"sharpenedPath", ",", "sharpenedImg"}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{"blurredPath", ",", "blurredImg"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{"applyAndSaveFiltered", "[", "imageFile", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"imageFile", ",", "imageFiles"}], "}"}]}], "]"}], 
+  ";"}], "\n"}], "Input",
+ CellChangeTimes->{{3.920631438056226*^9, 3.920631438874829*^9}, 
+   3.920637182229725*^9, {3.920637596947649*^9, 3.92063760497956*^9}, {
+   3.9206378454365463`*^9, 3.9206378656278343`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"731ca047-e5bb-45e4-8014-9614e64ffe0d"]
+},
+WindowSize->{958.5, 999.75},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"01be64cb-e593-48f7-876a-b89de06dde93"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1011, 22, 67, "Input",ExpressionUUID->"54240234-2f14-43e1-be36-231f75861b0e"],
+Cell[1572, 44, 316, 8, 28, "Input",ExpressionUUID->"12f93a0b-04e2-4fcd-b477-30816aef8dba"],
+Cell[CellGroupData[{
+Cell[1913, 56, 3004, 67, 333, "Input",ExpressionUUID->"93b5d486-a93f-47fa-9fa9-31e051c9fb2e"],
+Cell[4920, 125, 180, 2, 32, "Output",ExpressionUUID->"ab6a8c6a-12c2-4def-963a-a75e98a5beef"]
+}, Open  ]],
+Cell[5115, 130, 403, 9, 28, "Input",ExpressionUUID->"b2598805-5b82-402a-94b5-8f897cb32f0d"],
+Cell[5521, 141, 3638, 85, 638, "Input",ExpressionUUID->"731ca047-e5bb-45e4-8014-9614e64ffe0d"]
+}
+]
+*)
+
